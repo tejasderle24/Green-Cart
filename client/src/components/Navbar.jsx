@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { assets } from '../assets/assets'
+import { navbar } from '../assets/navbar/navbar.js'
 import { Menu, Search, ShoppingCart } from "lucide-react";
 import { useAppContext } from "../context/AppContext";
 
@@ -17,7 +17,7 @@ const Navbar = () => {
         <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
 
             <NavLink to='/' onClick={() => setOpen(false)}>
-                <img className="h-9" src={assets.logo} alt="logo" />
+                <img className="h-9" src={navbar.logo} alt="logo" />
             </NavLink>
 
             {/* Desktop Menu */}
@@ -47,7 +47,7 @@ const Navbar = () => {
                     :
                     (
                         <div className="relative group">
-                            <img src={assets.profile_icon} className="w-10" alt="Profile Icon" />
+                            <img src={navbar.profile_icon} className="w-10" alt="Profile Icon" />
                             <ul
                                 className="hidden group-hover:block absolute top-10 right-0 bg-white shadow-md rounded-md text-sm border-gray-200 w-30 z-40 p-2.5">
                                 <li
