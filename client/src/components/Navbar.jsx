@@ -17,7 +17,7 @@ const Navbar = () => {
 
     useEffect(() => {
         if(searchQuery.length > 0 ){
-            navigate("/all-product")
+            navigate("/product")
         }
     }, [searchQuery]);
 
@@ -33,7 +33,7 @@ const Navbar = () => {
 
                 {/* Nav Links */}
                 <NavLink to='/'>Home</NavLink>
-                <NavLink to='/all-product'>All Product</NavLink>
+                <NavLink to='/product'>All Product</NavLink>
                 <NavLink to='/contact'>Contact Us</NavLink>
 
                 {/* Search Bar */}
@@ -89,7 +89,7 @@ const Navbar = () => {
             {open && (
                 <div className={`${open ? 'flex' : 'hidden'} absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}>
                     <NavLink to='/' onClick={() => setOpen(false)}>Home</NavLink>
-                    <NavLink to='/all-product' onClick={() => setOpen(false)}>All Product</NavLink>
+                    <NavLink to='/product' onClick={() => setOpen(false)}>All Product</NavLink>
                     {user &&
                         <NavLink to='/my-order' onClick={() => setOpen(false)}>My Order</NavLink>
                     }
