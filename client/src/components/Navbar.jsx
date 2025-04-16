@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { navbar } from '../assets/navbar/navbar.js'
 import { Menu, Search, ShoppingCart } from "lucide-react";
@@ -6,12 +6,20 @@ import { useAppContext } from "../context/AppContext";
 
 const Navbar = () => {
     const [open, setOpen] = React.useState(false)
-    const { user, setUser, showUserLogin, setShowUserLogin, navigator } = useAppContext();
+    const { user, setUser, showUserLogin, setShowUserLogin, navigate, searchQuery, setSearchQuery } = useAppContext();
 
+
+    
     const logout = async () => {
         setUser(null);
-        navigator('/')
+        navigate('/')
     }
+
+    useEffect(() => {
+        if(searchQuery.length > 0 ){
+            navigate("/all-product")
+        }
+    }, [searchQuery]);
 
     return (
         <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
@@ -22,21 +30,28 @@ const Navbar = () => {
 
             {/* Desktop Menu */}
             <div className="hidden sm:flex items-center gap-8">
+
+                {/* Nav Links */}
                 <NavLink to='/'>Home</NavLink>
                 <NavLink to='/all-product'>All Product</NavLink>
                 <NavLink to='/contact'>Contact Us</NavLink>
 
+                {/* Search Bar */}
                 <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
-                    <input className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500" type="text" placeholder="Search products" />
+                    <input onChange={(e) => setSearchQuery(e.target.value)} className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500" type="text" placeholder="Search products" />
                     <Search className="w-5 h-5 opacity-90" />
                 </div>
 
+                {/* Cart Button */}
                 <div className="relative cursor-pointer">
                     <ShoppingCart className="h-5 opacity-80" />
                     <button
                         onClick={() => navigator("/cart")}
                         className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">3</button>
                 </div>
+
+
+                {/* Auth Funcanality */}
 
                 {!user ? (
                     <button
@@ -62,6 +77,8 @@ const Navbar = () => {
                     )}
 
             </div>
+
+            {/* Start Mobile View */}
 
             <button onClick={() => open ? setOpen(false) : setOpen(true)} aria-label="Menu" className="sm:hidden">
                 {/* Menu Icon SVG */}
