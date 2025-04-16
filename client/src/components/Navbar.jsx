@@ -6,17 +6,17 @@ import { useAppContext } from "../context/AppContext";
 
 const Navbar = () => {
     const [open, setOpen] = React.useState(false)
-    const { user, setUser, showUserLogin, setShowUserLogin, navigate, searchQuery, setSearchQuery } = useAppContext();
+    const { user, setUser, showUserLogin, setShowUserLogin, navigate, searchQuery, setSearchQuery, getCartCount } = useAppContext();
 
 
-    
+
     const logout = async () => {
         setUser(null);
         navigate('/')
     }
 
     useEffect(() => {
-        if(searchQuery.length > 0 ){
+        if (searchQuery.length > 0) {
             navigate("/product")
         }
     }, [searchQuery]);
@@ -44,10 +44,11 @@ const Navbar = () => {
 
                 {/* Cart Button */}
                 <div className="relative cursor-pointer">
-                    <ShoppingCart className="h-5 opacity-80" />
+                    <ShoppingCart
+                        className="h-5 opacity-80" />
                     <button
-                        onClick={() => navigator("/cart")}
-                        className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">3</button>
+                        onClick={() => navigate("/cart")}
+                        className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">{getCartCount()}</button>
                 </div>
 
 
@@ -80,10 +81,22 @@ const Navbar = () => {
 
             {/* Start Mobile View */}
 
-            <button onClick={() => open ? setOpen(false) : setOpen(true)} aria-label="Menu" className="sm:hidden">
-                {/* Menu Icon SVG */}
-                <Menu className="w-4 h-4" />
-            </button>
+            <div className="flex items-center gap-6 sm:hidden">
+                <div className="relative cursor-pointer">
+                    <ShoppingCart className="h-5 opacity-80" />
+                    <button
+                        onClick={() => navigate("/cart")}
+                        className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">{getCartCount()}</button>
+                </div>
+
+                <button onClick={() => open ? setOpen(false) : setOpen(true)} aria-label="Menu">
+                    {/* Menu Icon SVG */}
+                    <Menu className="w-4 h-4" />
+                </button>
+
+            </div>
+
+
 
             {/* Mobile Menu */}
             {open && (

@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { AllProducts, Home, ProductCategory, ProductDetails } from './pages/index';
+import { AllProducts, Cart, Home, ProductCategory, ProductDetails } from './pages/index';
 import { Toaster } from 'react-hot-toast'
 import Footer from './components/Footer';
 import { useAppContext } from './context/AppContext';
@@ -25,6 +25,7 @@ function App() {
           <Route path='/product' element={<AllProducts />} />
           <Route path='/product/:category' element={<ProductCategory />} />
           <Route path='/product/:category/:id' element={<ProductDetails />} />
+          <Route path='/cart' element={<Cart />} />
 
         </Routes>
       </div>
