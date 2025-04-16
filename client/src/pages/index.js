@@ -4,4 +4,5 @@ import ProductCategory from "./ProductCategory";
 import ProductDetails from "./ProductDetails";
 import Cart from "./Cart";
 import AddAddress from "./AddAddress";
-export {Home, AllProducts, ProductCategory, ProductDetails, Cart, AddAddress}
+import MyOrder from "./MyOrder";
+export {Home, AllProducts, ProductCategory, ProductDetails, Cart, AddAddress, MyOrder}
