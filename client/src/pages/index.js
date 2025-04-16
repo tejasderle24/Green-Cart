@@ -1,5 +1,5 @@
 import Home from "./Home";
 import AllProducts from "./AllProducts";
 import ProductCategory from "./ProductCategory";
-
-export {Home, AllProducts, ProductCategory}
+import ProductDetails from "./ProductDetails";
+export {Home, AllProducts, ProductCategory, ProductDetails}
