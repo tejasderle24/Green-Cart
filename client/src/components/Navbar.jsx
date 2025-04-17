@@ -43,11 +43,11 @@ const Navbar = () => {
                 </div>
 
                 {/* Cart Button */}
-                <div className="relative cursor-pointer">
+                <div onClick={() => navigate("/cart")} className="relative cursor-pointer">
                     <ShoppingCart
                         className="h-5 opacity-80" />
                     <button
-                        onClick={() => navigate("/cart")}
+                        
                         className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">{getCartCount()}</button>
                 </div>
 
