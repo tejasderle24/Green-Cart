@@ -7,7 +7,8 @@ const SellerLogin = () => {
     const [password, setPassword] = useState("");
 
     const onSubmitHandler = async (event) =>{
-        event.setIsSeller(true);
+        event.preventDefault();
+        setIsSeller(true);
     }
 
     useEffect(() => {

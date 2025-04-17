@@ -7,16 +7,17 @@ import Footer from './components/Footer';
 import { useAppContext } from './context/AppContext';
 import Login from './components/auth/Login';
 import { SellerLogin } from './components/sellerAdmin';
+import { AddProducts, Orders, ProductList, SellerLayout } from './pages/sellerAdmin';
 
 function App() {
 
   const isSellerPath = useLocation().pathname.includes("seller")
-  const {showUserLogin, isSeller} = useAppContext();
+  const { showUserLogin, isSeller } = useAppContext();
 
   return (
-    <div>
+    <div className='text-default min-h-screen bg-white text-gray-700'>
       {isSellerPath ? null : <Navbar />}
-      {showUserLogin ? <Login/> : null}
+      {showUserLogin ? <Login /> : null}
 
       <Toaster />
 
@@ -31,11 +32,11 @@ function App() {
           <Route path='/my-order' element={<MyOrder />} />
 
           {/* Seller */}
-          <Route path='/seller' element={isSeller ? null : <SellerLogin/>}>
-
-
+          <Route path='/seller' element={isSeller ? <SellerLayout /> : <SellerLogin />}>
+            <Route index element={<AddProducts />} />
+            <Route path='product-list' element={<ProductList />} />
+            <Route path='order' element={<Orders />} />
           </Route>
-
         </Routes>
       </div>
       {!isSellerPath && <Footer />}
