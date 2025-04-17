@@ -6,11 +6,12 @@ import { Toaster } from 'react-hot-toast'
 import Footer from './components/Footer';
 import { useAppContext } from './context/AppContext';
 import Login from './components/auth/Login';
+import { SellerLogin } from './components/sellerAdmin';
 
 function App() {
 
   const isSellerPath = useLocation().pathname.includes("seller")
-  const {showUserLogin} = useAppContext();
+  const {showUserLogin, isSeller} = useAppContext();
 
   return (
     <div>
@@ -28,6 +29,12 @@ function App() {
           <Route path='/cart' element={<Cart />} />
           <Route path='/add-address' element={<AddAddress />} />
           <Route path='/my-order' element={<MyOrder />} />
+
+          {/* Seller */}
+          <Route path='/seller' element={isSeller ? null : <SellerLogin/>}>
+
+
+          </Route>
 
         </Routes>
       </div>
